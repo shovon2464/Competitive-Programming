@@ -9,7 +9,8 @@ int main(){
     freopen("output.txt","w",stdout);
 #endif
 
-    vector<int> v;
+    vector<int> v(1000,0);
+    //v.reserve(1000);
 
     int n;
     cin>>n;
