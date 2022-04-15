@@ -35,7 +35,7 @@ int main(){
 
     for(int i=0;i<V;i++){
         for(int j=0;j<E;j++){
-            cout<<graph[i][j]<< " ";
+            cout<<graph[i][j]<< "    ";
         }
         cout<<endl;
     }
