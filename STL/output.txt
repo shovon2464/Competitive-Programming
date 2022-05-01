@@ -1,1 +1,7 @@
-1 
+Capacity: 1 Size: 1
+Capacity: 2 Size: 2
+Capacity: 4 Size: 3
+Capacity: 4 Size: 4
+Capacity: 8 Size: 5
+5 4 3 2 1 
+1 2 3 4 5 
