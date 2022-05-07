@@ -1,1 +1,1 @@
-Not power of two
+0
