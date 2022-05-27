@@ -1,80 +1,91 @@
 #include<iostream>
+#include<vector>
+#include<string>
 #include<algorithm>
-
 
 using namespace std;
 
-char digitToChar(int digit){
-    return digit + '0';
+int toInteger(char x){
+    return (x-'0');
 }
 
-int charToDigit(char c1){
-    return (c1 - '0');
+char toChar(int x){
+    return (x + '0');
 }
 
-string addNumbers(string n1, string n2){
+string addNumbers(string num1, string num2){
 
-    //make sure N2 is larger
-    if(n1.length() > n2.length()){
-        swap(n1,n2);
+    //make sure num2 is larger
+    if(num1.length()>num2.length()){
+        swap(num1,num2);
     }
 
-    //result
-    string result = "";
-
     //reverse
-    reverse(n1.begin(),n1.end());
-    reverse(n2.begin(), n2.end());
+    reverse(num1.begin(),num1.end());
+    reverse(num2.begin(), num2.end());
+
+
+    string output = "";
+    int carry = 0;
 
     //add digit upto a n1.length()
 
-    int carry = 0;
+    for(int i = 0;i<num1.length();i++){
+        int n1 = toInteger(num1[i]);
+        int n2 = toInteger(num2[i]);
+        int sum = n1+n2+carry;
+        int val = sum % 10;
+        carry = sum/10;
+        
 
-    for(int i=0;i < n1.length();i++){
-        int d1 = charToDigit(n1[i]);
-        int d2 = charToDigit(n2[i]);
-        int sum = d1+d2+carry;
-        int output_digit = sum % 10;
+        output.push_back(toChar(val));
+        
+    }
+
+    //from n1.length()
+
+    for(int i=num1.length();i<num2.length();i++){
+        int n2 = toInteger(num2[i]);
+        int sum = n2+ carry;
+
+        int val = sum % 10;
         carry = sum/10;
 
-        result.push_back(digitToChar(output_digit));
+        output.push_back(toChar(val));
     }
 
-    for(int i=n1.length();i<n2.length();i++){
-        int d2 = charToDigit(n2[i]);
-        int sum = d2+carry;
-
-        int output_digit = sum % 10;
-        carry = sum/10;
-
-        result.push_back(digitToChar(output_digit));
+    //Finally a carry is generated
+    if(carry>0){
+        output.push_back(toChar(carry));
     }
 
-    //Finally if  carry is generated
-    if (carry>0){
-        result.push_back('1');
-    }
+    //Reverse the final output
+    reverse(output.begin(),output.end());
 
-    reverse(result.begin(),result.end());
+    
 
-    return result;
-
-}
+    return output;
+    
+} 
 
 
 int main(){
-    freopen("input.txt","r",stdin);
+
     freopen("output.txt","w",stdout);
 
-    //string
+    //input as a string
 
-    string s1 = "1111111999999";
-    string s2 = "999999888";
+    string num1 = "1111111999999";
+    string num2 = "999999888";
 
-    string result = addNumbers(s1,s2);
 
+    string result = addNumbers(num1,num2);
 
     cout<<result;
+
+
+
+
 
     return 0;
 }
