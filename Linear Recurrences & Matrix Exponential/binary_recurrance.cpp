@@ -2,15 +2,20 @@
 
 using namespace std;
 
+long long int mod = 1e9+7;
 
-int powr(int a, int b){
-    int res = 1;
+
+
+long long int powr(long long int a, int b){
+    long long int res = 1;
 
     while(b){
         if(b & 1){
             res *= a;
+            res = res % mod;
         }
         a *= a;
+        a = a % mod;
         b /= 2;
     }
 
@@ -20,8 +25,9 @@ int powr(int a, int b){
 
 int main(){
 
-
-    cout<<powr(2,10);
+    freopen("output.txt","w",stdout);
+    
+    cout<<powr(3,265);
 
 
     return 0;
